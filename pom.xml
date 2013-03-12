@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.jboss</groupId>
+        <artifactId>jboss-parent</artifactId>
+        <version>10</version>
+    </parent>
+
+    <groupId>org.jboss.spec.javax.batch</groupId>
+    <artifactId>jboss-batch-api_1.0_spec</artifactId>
+    <version>1.0.0.Beta1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>Batch Applications for the Java Platform</name>
+    <description>JSR 352: Batch Applications for the Java Platform API classes</description>
+
+    <scm>
+     <connection>scm:git:git@github.com:jboss/jboss-batch-api_spec.git</connection>
+     <developerConnection>scm:git:git@github.com:jboss/jboss-batch-api_spec.git</developerConnection>
+     <url>https://github.com/jboss/jboss-batch-api_spec</url>
+  </scm>
+
+    <licenses>
+        <license>
+            <name>Apache License</name>
+            <url>http://repository.jboss.org/licenses/apache-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <jsr352.spec.title>JSR-352 Batch Applications for the Java Platform</jsr352.spec.title>
+        <jsr352.spec.vendor>IBM</jsr352.spec.vendor>
+        <jsr352.spec.version>1.0</jsr352.spec.version>
+        <version.javax.inject>1</version.javax.inject>
+        <version.cdi-api>1.0</version.cdi-api>
+
+        <!-- This property is used by the maven enforcer and maven compiler plugins configured in the parent pom
+            (jboss-parent). We override the value here to 1.7 to force our project to require Java 7 -->
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>${version.javax.inject}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <version>${version.cdi-api}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Include LICENSE.txt in the META-INF directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}</directory>
+                                    <includes>
+                                        <include>LICENSE.txt</include>
+                                        <include>README</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.outputDirectory}/META-INF</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Generate the OSGi jar Manifest. -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>bundle-manifest</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>manifest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
+                        </manifest>
+                    </archive>
+                    <instructions>
+                        <Specification-Title>${jsr352.spec.title}</Specification-Title>
+                        <Specification-Vendor>${jsr352.spec.vendor}</Specification-Vendor>
+                        <Specification-Version>${jsr352.spec.version}</Specification-Version>
+                        <!-- Set the package version to match the spec version -->
+                        <Export-Package>
+                            javax.batch.*;version=${jsr352.spec.version}
+                        </Export-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <!-- Add the OSGi Manifest to the main jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Specification-Title>${jsr352.spec.title}</Specification-Title>
+                            <Specification-Vendor>${jsr352.spec.title}</Specification-Vendor>
+                            <Specification-Version>${jsr352.spec.version}</Specification-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
