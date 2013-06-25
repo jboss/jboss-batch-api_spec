@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -17,12 +18,20 @@
     <name>Batch Applications for the Java Platform</name>
     <description>JSR 352: Batch Applications for the Java Platform API classes</description>
 
+    <properties>
+        <jsr352.spec.title>JSR-352 Batch Applications for the Java Platform</jsr352.spec.title>
+        <jsr352.spec.vendor>IBM</jsr352.spec.vendor>
+        <jsr352.spec.version>1.0</jsr352.spec.version>
+        <version.javax.inject>1</version.javax.inject>
+        <version.cdi-api>1.1</version.cdi-api>
+    </properties>
+
     <scm>
         <connection>scm:git:git@github.com:jboss/jboss-batch-api_spec.git</connection>
         <developerConnection>scm:git:git@github.com:jboss/jboss-batch-api_spec.git</developerConnection>
         <url>https://github.com/jboss/jboss-batch-api_spec</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <licenses>
         <license>
@@ -31,14 +40,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <properties>
-        <jsr352.spec.title>JSR-352 Batch Applications for the Java Platform</jsr352.spec.title>
-        <jsr352.spec.vendor>IBM</jsr352.spec.vendor>
-        <jsr352.spec.version>1.0</jsr352.spec.version>
-        <version.javax.inject>1</version.javax.inject>
-        <version.cdi-api>1.1</version.cdi-api>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -105,10 +106,14 @@
                         <Specification-Title>${jsr352.spec.title}</Specification-Title>
                         <Specification-Vendor>${jsr352.spec.vendor}</Specification-Vendor>
                         <Specification-Version>${jsr352.spec.version}</Specification-Version>
+                        <Extension-Name>javax.batch</Extension-Name>
+                        <Implementation-URL>${project.scm.url}</Implementation-URL>
                         <!-- Set the package version to match the spec version -->
                         <Export-Package>
                             javax.batch.*;version=${jsr352.spec.version}
                         </Export-Package>
+                        <Import-Package>javax.enterprise.util;resolution:=optional,javax.inject;resolution:=optional
+                        </Import-Package>
                     </instructions>
                 </configuration>
             </plugin>

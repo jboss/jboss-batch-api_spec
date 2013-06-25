@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 International Business Machines Corp.
+ * Copyright 2013 International Business Machines Corp.
  * 
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License, 
@@ -13,19 +13,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+*/
+/**
+ * Provides APIs used by Batch artifacts.
  */
-
-package javax.batch.runtime;
-
-public interface JobInstance {
-	/**
-	 * Get unique id for this JobInstance.
-	 * @return instance id
-	 */
-	public long getInstanceId();
-	/**
-	 * Get job name.
-	 * @return value of 'id' attribute from <job>
-	 */
-	public String getJobName();	
-}
+package javax.batch.api;
