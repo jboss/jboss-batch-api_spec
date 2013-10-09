@@ -11,7 +11,7 @@
 
     <groupId>org.jboss.spec.javax.batch</groupId>
     <artifactId>jboss-batch-api_1.0_spec</artifactId>
-    <version>1.0.0.Final</version>
+    <version>1.0.1.Final-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Batch Applications for the Java Platform</name>
@@ -29,7 +29,7 @@
         <connection>scm:git:git@github.com:jboss/jboss-batch-api_spec.git</connection>
         <developerConnection>scm:git:git@github.com:jboss/jboss-batch-api_spec.git</developerConnection>
         <url>https://github.com/jboss/jboss-batch-api_spec</url>
-        <tag>jboss-batch-api_1.0_spec-1.0.0.Final</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
