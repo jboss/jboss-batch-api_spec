@@ -85,7 +85,7 @@ public interface JobContext  {
 	 * the value specified through setExitStatus. If setExitStatus was not 
 	 * called or was called with a null value, then the exit status 
 	 * defaults to the batch status of the job. 
-	 * @Param status string 
+	 * @param status string 
 	 */
 	public void setExitStatus(String status);
 }

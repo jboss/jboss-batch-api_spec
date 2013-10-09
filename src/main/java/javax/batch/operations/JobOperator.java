@@ -211,8 +211,7 @@ public interface JobOperator {
 	/**
 	 * Return all job executions belonging to the specified job instance.
 	 * 
-	 * @param jobInstance
-	 *            specifies the job instance.
+	 * @param instance specifies the job instance.
 	 * @return list of job executions
 	 * @throws NoSuchJobInstanceException
 	 * @throws JobSecurityException 
@@ -235,7 +234,7 @@ public interface JobOperator {
 	/**
 	 * Return StepExecutions for specified execution id. 
 	 * 
-	 * @param executionId
+	 * @param jobExecutionId
 	 *            specifies the job execution.
 	 * @return step executions (order not guaranteed)
 	 * @throws NoSuchJobExecutionException

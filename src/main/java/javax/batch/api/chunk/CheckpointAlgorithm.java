@@ -29,13 +29,11 @@ public interface CheckpointAlgorithm {
 	 * checkpoint interval for the purpose of establishing the checkpoint 
 	 * timeout. 
 	 * It is invoked before the next checkpoint transaction begins. This 
-       * method returns an integer value, 
+         * method returns an integer value, 
 	 * which is the timeout value that will be used for the next checkpoint 
 	 * transaction.  This method is useful to automate the setting of the 
-	 * checkpoint timeout based on factors known outside the job 	 	 	 * definition. 
+	 * checkpoint timeout based on factors known outside the job definition. 
 	 * 
-	 * @param timeout specifies the checkpoint timeout value for the 	 * 
-       * next checkpoint interval.
 	 * @return the timeout interval to use for the next checkpoint interval 
 	 * @throws Exception thrown for any errors.
 	 */
