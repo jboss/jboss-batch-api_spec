@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.jboss</groupId>
         <artifactId>jboss-parent</artifactId>
-        <version>10</version>
+        <version>25</version>
     </parent>
 
     <groupId>org.jboss.spec.javax.batch</groupId>
@@ -100,6 +100,9 @@
                         <manifest>
                             <addDefaultSpecificationEntries>false</addDefaultSpecificationEntries>
                         </manifest>
+                        <manifestEntries>
+                            <Automatic-Module-Name>beta.jboss.batch.api_1_0</Automatic-Module-Name>
+                        </manifestEntries>
                     </archive>
                     <instructions>
                         <Specification-Title>${jsr352.spec.title}</Specification-Title>
